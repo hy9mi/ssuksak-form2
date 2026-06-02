@@ -54,7 +54,7 @@
 
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    /* 지역 탭 */
+    /* 주/부 탭 */
     .region-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
     .region-tab {
       flex: 1; padding: 9px 8px; font-size: 13px; font-weight: 500; font-family: inherit;
@@ -64,40 +64,39 @@
     }
     .region-tab.active-main { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
     .region-tab.active-sub { border-color: #3b6bc7; background: var(--sub-bg); color: var(--sub-text); }
-    .region-tab-hint { font-size: 12px; color: var(--text-hint); margin-bottom: 10px; line-height: 1.6; }
-
-    .region-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-    .select-wrap { position: relative; }
-    .select-wrap select { padding-right: 32px; cursor: pointer; }
-    .select-wrap .chevron { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; width: 14px; height: 14px; stroke: var(--text-hint); }
-
-    .gu-dropdown-btn {
-      width: 100%; padding: 10px 13px; font-size: 14px; font-family: inherit;
-      color: var(--text-primary); background: var(--bg);
-      border: 1px solid var(--border); border-radius: var(--radius-sm);
-      cursor: pointer; text-align: left;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: border-color 0.15s;
-    }
-    .gu-dropdown-btn.open, .gu-dropdown-btn:focus { border-color: var(--accent-mid); background: #fff; }
-    .gu-dropdown-btn .placeholder { color: var(--text-hint); }
-    .gu-dropdown-btn svg { width: 14px; height: 14px; stroke: var(--text-hint); flex-shrink: 0; transition: transform 0.2s; }
-    .gu-dropdown-btn.open svg { transform: rotate(180deg); }
-    .gu-panel { display: none; border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); background: #fff; max-height: 210px; overflow-y: auto; margin-top: -1px; }
-    .gu-panel.open { display: block; }
-    .gu-all-row { display: flex; align-items: center; gap: 10px; padding: 9px 13px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer; }
-    .gu-all-row:hover { background: var(--bg); }
-    .gu-item { display: flex; align-items: center; gap: 10px; padding: 8px 13px; font-size: 14px; cursor: pointer; transition: background 0.1s; }
-    .gu-item:hover { background: var(--bg); }
-    .gu-item.sel { background: var(--accent-light); }
-    .gu-item.sel span { color: var(--accent); font-weight: 500; }
-    .gu-item input[type="checkbox"], .gu-all-row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; background: none; border: none; padding: 0; }
-
+    .region-tab-hint { font-size: 12px; color: var(--text-hint); margin-bottom: 12px; line-height: 1.6; }
     .region-section { display: none; }
     .region-section.active { display: block; }
 
-    .tags-label { font-size: 12px; font-weight: 500; color: var(--text-hint); margin-bottom: 6px; margin-top: 14px; letter-spacing: 0.04em; }
-    .region-tags { display: flex; flex-wrap: wrap; gap: 6px; min-height: 0; }
+    /* 시/도 버튼 행 */
+    .sido-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .sido-btn {
+      padding: 6px 12px; font-size: 13px; font-weight: 500; font-family: inherit;
+      border: 1px solid var(--border); border-radius: 999px;
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    }
+    .sido-btn:hover { border-color: var(--border-strong); }
+    .sido-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; font-weight: 600; }
+
+    /* 시군구 버튼 그리드 */
+    .gu-btn-wrap { min-height: 44px; margin-bottom: 12px; }
+    .gu-btn-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .gu-btn {
+      padding: 6px 13px; font-size: 13px; font-family: inherit;
+      border: 1px solid var(--border); border-radius: 999px;
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .gu-btn:hover { border-color: var(--border-strong); }
+    .gu-btn.sel { border-color: var(--accent); background: var(--accent-light); color: var(--accent); font-weight: 500; }
+    .gu-btn.sel::before { content: "✓ "; font-size: 11px; }
+    .gu-hint { font-size: 12px; color: var(--text-hint); padding: 10px 0; }
+
+    /* 선택된 태그 */
+    .tags-label { font-size: 12px; font-weight: 500; color: var(--text-hint); margin-bottom: 6px; letter-spacing: 0.04em; }
+    .region-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .rtag {
       display: inline-flex; align-items: center; gap: 5px;
       background: var(--tag-bg); color: var(--tag-text); border: 1px solid var(--tag-border);
@@ -197,7 +196,7 @@
   <div class="form-header">
     <div class="brand">쓱싹</div>
     <h1>전문가 현황 업데이트</h1>
-    <p>입력하신 내용은 즉시 내부 시스템에 반영됩니다.</p>
+    <p>입력하신 내용은 확인 후 반영됩니다.</p>
   </div>
 
   <form id="mainForm" novalidate>
@@ -243,33 +242,14 @@
       </div>
       <div id="hintSub" class="region-tab-hint" style="display:none">
         <strong>부 지역</strong> — 거리상 조금 애매하지만 조건부로 가능한 구역이에요.<br>
-        예) 2대 이상일 때, 사전 협의 시 등 — 아래 메모에 조건을 남겨주세요.
+        예) 2대 이상일 때, 비성수기에, 사전 협의 시 등 — 아래 메모에 조건을 남겨주세요.
       </div>
 
       <div class="region-section active" id="sectionMain">
-        <div class="region-grid">
-          <div class="field" style="margin-bottom:0">
-            <label>시 / 도</label>
-            <div class="select-wrap">
-              <select id="sidoSelectMain" onchange="onSidoChange('main', this.value)">
-                <option value="">선택해주세요</option>
-              </select>
-              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="field" style="margin-bottom:0; position:relative;">
-            <label>시 / 군 / 구</label>
-            <button type="button" class="gu-dropdown-btn" id="guBtnMain" onclick="toggleGuPanel('main')">
-              <span id="guBtnLabelMain" class="placeholder">시/도를 먼저 선택하세요</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="gu-panel" id="guPanelMain">
-              <div class="gu-all-row" onclick="toggleAll('main')">
-                <input type="checkbox" id="allCheckMain" onclick="event.stopPropagation(); toggleAll('main')"> 전체 선택
-              </div>
-              <div id="guListInnerMain"></div>
-            </div>
-          </div>
+        <div class="sido-row" id="sidoRowMain"></div>
+        <div class="gu-btn-wrap">
+          <div class="gu-btn-grid" id="guGridMain"></div>
+          <div class="gu-hint" id="guHintMain">위에서 시/도를 선택하면 시군구가 표시됩니다.</div>
         </div>
         <div id="tagsMainWrap" style="display:none">
           <div class="tags-label">선택된 주 지역</div>
@@ -278,29 +258,10 @@
       </div>
 
       <div class="region-section" id="sectionSub">
-        <div class="region-grid">
-          <div class="field" style="margin-bottom:0">
-            <label>시 / 도</label>
-            <div class="select-wrap">
-              <select id="sidoSelectSub" onchange="onSidoChange('sub', this.value)">
-                <option value="">선택해주세요</option>
-              </select>
-              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-          <div class="field" style="margin-bottom:0; position:relative;">
-            <label>시 / 군 / 구</label>
-            <button type="button" class="gu-dropdown-btn" id="guBtnSub" onclick="toggleGuPanel('sub')">
-              <span id="guBtnLabelSub" class="placeholder">시/도를 먼저 선택하세요</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="gu-panel" id="guPanelSub">
-              <div class="gu-all-row" onclick="toggleAll('sub')">
-                <input type="checkbox" id="allCheckSub" onclick="event.stopPropagation(); toggleAll('sub')"> 전체 선택
-              </div>
-              <div id="guListInnerSub"></div>
-            </div>
-          </div>
+        <div class="sido-row" id="sidoRowSub"></div>
+        <div class="gu-btn-wrap">
+          <div class="gu-btn-grid" id="guGridSub"></div>
+          <div class="gu-hint" id="guHintSub">위에서 시/도를 선택하면 시군구가 표시됩니다.</div>
         </div>
         <div id="tagsSubWrap" style="display:none">
           <div class="tags-label">선택된 부 지역</div>
@@ -315,12 +276,15 @@
     </div>
 
     <!-- 서비스 불가 기종 -->
-    <div class="card">
-      <div class="card-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+    <div class="card" style="border-color:#f0a0a0; border-width:1.5px;">
+      <div class="card-title" style="color:var(--danger);">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--danger)"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
         서비스 불가 기종
       </div>
-      <p style="font-size:12px; color:var(--text-hint); margin-bottom:12px; line-height:1.6;">진행하지 않는 기종을 모두 선택해주세요.</p>
+      <div style="background:var(--danger-light); border:1px solid #f0a0a0; border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:14px;">
+        <p style="font-size:15px; color:var(--danger); font-weight:500; line-height:1.6;"><strong style="font-weight:700;">진행하지 않는</strong> 기종을 모두 선택해주세요.</p>
+        <p style="font-size:12px; color:#b05050; margin-top:3px;">선택하지 않으면 해당 기종 작업이 배정될 수 있어요.</p>
+      </div>
       <div class="model-grid">
         <div class="model-opt"><input type="checkbox" id="m1"><label for="m1"><span class="model-name">벽걸이</span></label></div>
         <div class="model-opt"><input type="checkbox" id="m2"><label for="m2"><span class="model-name">스탠드</span></label></div>
@@ -332,7 +296,6 @@
         <div class="model-opt"><input type="checkbox" id="m8"><label for="m8"><span class="model-name">FCU 4way</span></label></div>
         <div class="model-opt"><input type="checkbox" id="m9"><label for="m9"><span class="model-name">원형</span></label></div>
         <div class="model-opt"><input type="checkbox" id="m10"><label for="m10"><span class="model-name">업소용 스탠드</span></label></div>
-        <div class="model-opt"><input type="checkbox" id="m11"><label for="m11"><span class="model-name">2in1</span></label></div>
       </div>
     </div>
 
@@ -383,7 +346,7 @@
       <!-- 기타 불가 -->
       <div class="cond-category">
         <div class="cond-cat-title">기타 불가 사항</div>
-        <textarea id="etcRestrict" style="min-height:70px" placeholder="예: 특정 제품 불가 등"></textarea>
+        <textarea id="etcRestrict" style="min-height:70px" placeholder="예: 특정 모델, 작업환경, 기타 특이 불가 사항들을 모두 입력해주세요."></textarea>
       </div>
     </div>
 
@@ -406,26 +369,48 @@
       </p>
     </div>
 
-    <button type="submit" class="submit-btn" id="submitBtn">
+    <button type="button" class="submit-btn" id="submitBtn" onclick="openConfirm()">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-      현황 업데이트 완료
+      입력 내용 확인 후 제출
     </button>
 
   </form>
 
-  <div class="success-screen" id="successScreen">
-    <div class="card" style="padding: 3rem 1.5rem; text-align:center; margin-top:1rem;">
-      <div style="width:56px;height:56px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" style="width:28px;height:28px;stroke:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg>
+  <!-- 제출 전 확인 모달 -->
+  <div id="confirmOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:200; overflow-y:auto; padding:24px 16px;">
+    <div style="max-width:560px; margin:0 auto; background:#fff; border-radius:16px; overflow:hidden;">
+      <div style="padding:20px 20px 0; border-bottom:1px solid var(--border); padding-bottom:16px; display:flex; align-items:center; justify-content:space-between;">
+        <h2 style="font-size:17px; font-weight:600;">입력 내용 확인</h2>
+        <button onclick="closeConfirm()" style="background:none;border:none;cursor:pointer;font-size:22px;color:var(--text-hint);padding:0;line-height:1;">×</button>
       </div>
-      <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">업데이트 완료!</h2>
-      <p style="color:var(--text-secondary);font-size:14px;">소중한 정보 감사합니다.<br>더 나은 매칭으로 보답하겠습니다.</p>
+      <div id="confirmBody" style="padding:16px 20px; font-size:14px; line-height:1.8;"></div>
+      <div style="padding:16px 20px; display:flex; gap:10px; border-top:1px solid var(--border);">
+        <button onclick="closeConfirm()" style="flex:1;padding:13px;font-size:14px;font-family:inherit;border:1.5px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;color:var(--text-secondary);">수정하기</button>
+        <button onclick="doSubmit()" id="confirmSubmitBtn" style="flex:2;padding:13px;font-size:14px;font-weight:600;font-family:inherit;border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;">제출하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 완료 화면 -->
+  <div class="success-screen" id="successScreen">
+    <div class="card" style="margin-top:1rem;">
+      <div style="text-align:center; padding:1.5rem 0 1rem;">
+        <div style="width:56px;height:56px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" style="width:28px;height:28px;stroke:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 style="font-size:18px;font-weight:600;margin-bottom:6px;">업데이트 완료!</h2>
+        <p style="color:var(--text-secondary);font-size:14px;">소중한 정보 감사합니다. 더 나은 매칭으로 보답하겠습니다.</p>
+      </div>
+      <div style="border-top:1px solid var(--border); padding-top:16px; margin-top:4px;">
+        <p style="font-size:12px; font-weight:600; color:var(--text-hint); letter-spacing:0.05em; margin-bottom:12px;">제출된 내용</p>
+        <div id="summaryBody" style="font-size:14px; line-height:1.9;"></div>
+      </div>
     </div>
   </div>
 
 </div>
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzaQYt1OozzZCXM2lV8gqoWrvambpP0f1bHbEufUsFtPZGK-24uvYeD20HW67bslftM/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzTb3Ve58-sCHNP5TWzdev8TyaON9HeffyvQteDm9jrR_nDfU4ia269uQt5fMO0eIbB/exec';
 
 const REGIONS = {
   "서울특별시": ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
@@ -448,16 +433,67 @@ const REGIONS = {
 };
 
 const selected = { main: {}, sub: {} };
-const currentSido = { main: '', sub: '' };
+const activeSido = { main: '', sub: '' };
 let currentTab = 'main';
 
-// 시도 초기화
-['main','sub'].forEach(t => {
-  const sel = document.getElementById(t === 'main' ? 'sidoSelectMain' : 'sidoSelectSub');
-  Object.keys(REGIONS).forEach(s => {
-    const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o);
+const SIDO_SHORT = {
+  "서울특별시":"서울","경기도":"경기","인천광역시":"인천","부산광역시":"부산",
+  "대구광역시":"대구","광주광역시":"광주","대전광역시":"대전","울산광역시":"울산",
+  "세종특별자치시":"세종","강원특별자치도":"강원","충청북도":"충북","충청남도":"충남",
+  "전북특별자치도":"전북","전라남도":"전남","경상북도":"경북","경상남도":"경남","제주특별자치도":"제주"
+};
+
+// 시도 버튼 초기화
+['main','sub'].forEach(type => {
+  const row = document.getElementById(type === 'main' ? 'sidoRowMain' : 'sidoRowSub');
+  Object.keys(REGIONS).forEach(sido => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'sido-btn';
+    btn.textContent = SIDO_SHORT[sido] || sido;
+    btn.dataset.sido = sido;
+    btn.onclick = () => selectSido(type, sido, btn);
+    row.appendChild(btn);
   });
 });
+
+function selectSido(type, sido, btn) {
+  activeSido[type] = sido;
+  const row = document.getElementById(type === 'main' ? 'sidoRowMain' : 'sidoRowSub');
+  row.querySelectorAll('.sido-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (!selected[type][sido]) selected[type][sido] = new Set();
+  renderGuGrid(type, sido);
+}
+
+function renderGuGrid(type, sido) {
+  const grid = document.getElementById(type === 'main' ? 'guGridMain' : 'guGridSub');
+  const hint = document.getElementById(type === 'main' ? 'guHintMain' : 'guHintSub');
+  const gus = REGIONS[sido] || [];
+  const sel = selected[type][sido] || new Set();
+  grid.innerHTML = '';
+  hint.style.display = 'none';
+  gus.forEach(gu => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'gu-btn' + (sel.has(gu) ? ' sel' : '');
+    btn.textContent = gu;
+    btn.onclick = () => toggleGu(type, sido, gu, btn);
+    grid.appendChild(btn);
+  });
+}
+
+function toggleGu(type, sido, gu, btn) {
+  if (!selected[type][sido]) selected[type][sido] = new Set();
+  if (selected[type][sido].has(gu)) {
+    selected[type][sido].delete(gu);
+    btn.classList.remove('sel');
+  } else {
+    selected[type][sido].add(gu);
+    btn.classList.add('sel');
+  }
+  renderTags(type);
+}
 
 function switchRegionTab(tab) {
   currentTab = tab;
@@ -469,84 +505,13 @@ function switchRegionTab(tab) {
   document.getElementById('hintSub').style.display = tab === 'sub' ? '' : 'none';
 }
 
-function onSidoChange(type, val) {
-  currentSido[type] = val;
-  const btnId = type === 'main' ? 'guBtnMain' : 'guBtnSub';
-  const panelId = type === 'main' ? 'guPanelMain' : 'guPanelSub';
-  document.getElementById(panelId).classList.remove('open');
-  document.getElementById(btnId).classList.remove('open');
-  if (!val) {
-    const lbl = document.getElementById(type === 'main' ? 'guBtnLabelMain' : 'guBtnLabelSub');
-    lbl.textContent = '시/도를 먼저 선택하세요'; lbl.classList.add('placeholder');
-    document.getElementById(type === 'main' ? 'guListInnerMain' : 'guListInnerSub').innerHTML = '';
-    return;
-  }
-  if (!selected[type][val]) selected[type][val] = new Set();
-  renderGuList(type, val);
-  updateGuBtn(type, val);
-}
-
-function toggleGuPanel(type) {
-  const sido = currentSido[type]; if (!sido) return;
-  const btnId = type === 'main' ? 'guBtnMain' : 'guBtnSub';
-  const panelId = type === 'main' ? 'guPanelMain' : 'guPanelSub';
-  document.getElementById(btnId).classList.toggle('open');
-  document.getElementById(panelId).classList.toggle('open');
-}
-
-function renderGuList(type, sido) {
-  const innerId = type === 'main' ? 'guListInnerMain' : 'guListInnerSub';
-  const allCheckId = type === 'main' ? 'allCheckMain' : 'allCheckSub';
-  const inner = document.getElementById(innerId);
-  const gus = REGIONS[sido] || [];
-  const sel = selected[type][sido] || new Set();
-  inner.innerHTML = '';
-  document.getElementById(allCheckId).checked = sel.size === gus.length && gus.length > 0;
-  gus.forEach(gu => {
-    const item = document.createElement('div');
-    item.className = 'gu-item' + (sel.has(gu) ? ' sel' : '');
-    item.innerHTML = `<input type="checkbox" ${sel.has(gu)?'checked':''} onclick="event.stopPropagation(); toggleGu('${type}','${sido}','${gu}',this.checked)"><span>${gu}</span>`;
-    item.addEventListener('click', e => { if (e.target.tagName !== 'INPUT') toggleGu(type, sido, gu, !sel.has(gu)); });
-    inner.appendChild(item);
-  });
-}
-
-function toggleGu(type, sido, gu, checked) {
-  if (!selected[type][sido]) selected[type][sido] = new Set();
-  if (checked) selected[type][sido].add(gu); else selected[type][sido].delete(gu);
-  renderGuList(type, sido);
-  updateGuBtn(type, sido);
-  renderTags(type);
-}
-
-function toggleAll(type) {
-  const sido = currentSido[type]; if (!sido) return;
-  const gus = REGIONS[sido];
-  if (!selected[type][sido]) selected[type][sido] = new Set();
-  const allCheckId = type === 'main' ? 'allCheckMain' : 'allCheckSub';
-  const allCheck = document.getElementById(allCheckId);
-  const will = !allCheck.checked; allCheck.checked = will;
-  if (will) gus.forEach(g => selected[type][sido].add(g)); else selected[type][sido].clear();
-  renderGuList(type, sido);
-  updateGuBtn(type, sido);
-  renderTags(type);
-}
-
-function updateGuBtn(type, sido) {
-  const cnt = selected[type][sido] ? selected[type][sido].size : 0;
-  const lbl = document.getElementById(type === 'main' ? 'guBtnLabelMain' : 'guBtnLabelSub');
-  if (cnt > 0) { lbl.textContent = `${cnt}개 선택됨`; lbl.classList.remove('placeholder'); }
-  else { lbl.textContent = '시/군/구 선택'; lbl.classList.add('placeholder'); }
-}
-
 function renderTags(type) {
-  const containerId = type === 'main' ? 'regionTagsMain' : 'regionTagsSub';
-  const wrapId = type === 'main' ? 'tagsMainWrap' : 'tagsSubWrap';
-  const container = document.getElementById(containerId);
+  const container = document.getElementById(type === 'main' ? 'regionTagsMain' : 'regionTagsSub');
+  const wrap = document.getElementById(type === 'main' ? 'tagsMainWrap' : 'tagsSubWrap');
   container.innerHTML = '';
   let count = 0;
   Object.entries(selected[type]).forEach(([sido, gus]) => {
-    const short = sido.replace('특별자치시','').replace('특별자치도','').replace('특별시','').replace('광역시','').replace(/도$/,'').trim();
+    const short = SIDO_SHORT[sido] || sido;
     gus.forEach(gu => {
       count++;
       const tag = document.createElement('div');
@@ -555,12 +520,12 @@ function renderTags(type) {
       container.appendChild(tag);
     });
   });
-  document.getElementById(wrapId).style.display = count > 0 ? '' : 'none';
+  wrap.style.display = count > 0 ? '' : 'none';
 }
 
 function removeTag(type, sido, gu) {
   if (selected[type][sido]) selected[type][sido].delete(gu);
-  if (currentSido[type] === sido) { renderGuList(type, sido); updateGuBtn(type, sido); }
+  if (activeSido[type] === sido) renderGuGrid(type, sido);
   renderTags(type);
 }
 
@@ -609,53 +574,25 @@ function updateLadderDependents() {
 }
 document.querySelectorAll('input[name="ladder"]').forEach(r => r.addEventListener('change', updateLadderDependents));
 
-// 외부 클릭 패널 닫기
-document.addEventListener('click', e => {
-  ['main','sub'].forEach(type => {
-    const panelId = type === 'main' ? 'guPanelMain' : 'guPanelSub';
-    const btnId = type === 'main' ? 'guBtnMain' : 'guBtnSub';
-    const panel = document.getElementById(panelId);
-    const btn = document.getElementById(btnId);
-    if (panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
-      panel.classList.remove('open'); btn.classList.remove('open');
-    }
-  });
-});
+let pendingPayload = null;
 
-// 제출
-document.getElementById('mainForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  let valid = true;
-
-  const nameField = document.getElementById('expertNameField');
-  if (!document.getElementById('expertName').value.trim()) { nameField.classList.add('has-error'); valid = false; } else nameField.classList.remove('has-error');
-
-  const phoneField = document.getElementById('expertPhoneField');
-  if (!document.getElementById('expertPhone').value.trim()) { phoneField.classList.add('has-error'); valid = false; } else phoneField.classList.remove('has-error');
-
-  if (!valid) return;
-
+function buildPayload() {
   const getRegions = (type) => {
     const arr = [];
-    Object.entries(selected[type]).forEach(([sido, gus]) => gus.forEach(gu => arr.push(`${sido} ${gu}`)));
+    Object.entries(selected[type]).forEach(([sido, gus]) => gus.forEach(gu => arr.push(`${SIDO_SHORT[sido] || sido} ${gu}`)));
     return arr.join(', ');
   };
-
   const duplexVal = document.querySelector('input[name="duplex"]:checked').value;
   const duplexDetail = document.getElementById('duplexDetail').querySelector('input').value;
   const ceilingVal = document.querySelector('input[name="ceiling"]:checked').value;
   const ceilingDetail = document.getElementById('ceilingDetail').querySelector('input').value;
-
-  const modelIds = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10','m11'];
-  const modelNames = ['벽걸이','스탠드','1/2way','4way','벽걸이 와이드','1way 와이드','FCU 1way','FCU 4way','원형','업소용 스탠드','2in1'];
-  const noModels = modelIds.filter((_,i) => document.getElementById(modelIds[i]).checked).map((_,i) => modelNames[i]);
-  // filter + map 인덱스 맞춰서 다시
+  const modelIds = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10'];
+  const modelNames = ['벽걸이','스탠드','1/2way','4way','벽걸이 와이드','1way 와이드','FCU 1way','FCU 4way','원형','업소용 스탠드'];
   const noModelList = modelIds.reduce((acc, id, i) => {
     if (document.getElementById(id).checked) acc.push(modelNames[i]);
     return acc;
   }, []);
-
-  const payload = {
+  return {
     timestamp: new Date().toLocaleString('ko-KR'),
     name: document.getElementById('expertName').value.trim(),
     phone: document.getElementById('expertPhone').value.trim(),
@@ -669,20 +606,73 @@ document.getElementById('mainForm').addEventListener('submit', async e => {
     etcRestrict: document.getElementById('etcRestrict').value.trim(),
     memo: document.getElementById('memo').value.trim()
   };
+}
 
-  const btn = document.getElementById('submitBtn');
-  btn.classList.add('loading');
+function buildSummaryHTML(p) {
+  const row = (label, val) => val
+    ? `<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);">
+        <span style="min-width:90px;color:var(--text-hint);font-size:13px;flex-shrink:0;">${label}</span>
+        <span style="color:var(--text-primary);font-weight:500;">${val}</span>
+       </div>`
+    : `<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);">
+        <span style="min-width:90px;color:var(--text-hint);font-size:13px;flex-shrink:0;">${label}</span>
+        <span style="color:var(--text-hint);">없음</span>
+       </div>`;
+  return [
+    row('성함', p.name),
+    row('연락처', p.phone),
+    row('주 지역', p.mainRegions || '선택 없음'),
+    row('부 지역', p.subRegions || '선택 없음'),
+    p.subRegions ? row('부 지역 조건', p.subCondition) : '',
+    row('사다리', p.ladder),
+    row('복층', p.duplex),
+    row('층고', p.ceiling),
+    row('불가 기종', p.noModels || '없음'),
+    row('기타 불가', p.etcRestrict),
+    row('메모', p.memo),
+  ].join('');
+}
+
+function openConfirm() {
+  const nameField = document.getElementById('expertNameField');
+  const phoneField = document.getElementById('expertPhoneField');
+  let valid = true;
+  if (!document.getElementById('expertName').value.trim()) { nameField.classList.add('has-error'); valid = false; } else nameField.classList.remove('has-error');
+  if (!document.getElementById('expertPhone').value.trim()) { phoneField.classList.add('has-error'); valid = false; } else phoneField.classList.remove('has-error');
+  if (!valid) { window.scrollTo(0,0); return; }
+
+  pendingPayload = buildPayload();
+  document.getElementById('confirmBody').innerHTML = buildSummaryHTML(pendingPayload);
+  document.getElementById('confirmOverlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeConfirm() {
+  document.getElementById('confirmOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+async function doSubmit() {
+  const btn = document.getElementById('confirmSubmitBtn');
+  btn.textContent = '전송 중...';
+  btn.style.opacity = '0.7';
+  btn.style.pointerEvents = 'none';
   try {
-    await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(pendingPayload) });
+    closeConfirm();
     document.getElementById('mainForm').style.display = 'none';
     document.querySelector('.notice-banner').style.display = 'none';
     document.querySelector('.form-header').style.display = 'none';
+    document.getElementById('summaryBody').innerHTML = buildSummaryHTML(pendingPayload);
     document.getElementById('successScreen').style.display = 'block';
+    window.scrollTo(0, 0);
   } catch (err) {
     alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
-    btn.classList.remove('loading');
+    btn.textContent = '제출하기';
+    btn.style.opacity = '';
+    btn.style.pointerEvents = '';
   }
-});
+}
 </script>
 </body>
 </html>
