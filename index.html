@@ -158,6 +158,22 @@
     .field.has-error input, .field.has-error textarea { border-color: var(--danger); }
     .field.has-error .error-msg { display: block; }
 
+    /* 기종 선택 */
+    .model-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .model-opt { position: relative; }
+    .model-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .model-opt label {
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding: 8px 13px; font-size: 13px; font-family: inherit;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.15s; user-select: none; gap: 1px;
+    }
+    .model-opt label .model-name { font-size: 13px; font-weight: 500; }
+    .model-opt label .model-sub { font-size: 10px; color: var(--text-hint); }
+    .model-opt input:checked + label { border-color: var(--danger); background: var(--danger-light); color: var(--danger); }
+    .model-opt input:checked + label .model-sub { color: #e07070; }
+
     @media (max-width: 480px) {
       .region-grid, .two-col { grid-template-columns: 1fr; }
       body { padding: 1rem 0.75rem 3rem; }
@@ -298,6 +314,28 @@
 
     </div>
 
+    <!-- 서비스 불가 기종 -->
+    <div class="card">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        서비스 불가 기종
+      </div>
+      <p style="font-size:12px; color:var(--text-hint); margin-bottom:12px; line-height:1.6;">진행하지 않는 기종을 모두 선택해주세요.</p>
+      <div class="model-grid">
+        <div class="model-opt"><input type="checkbox" id="m1"><label for="m1"><span class="model-name">벽걸이</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m2"><label for="m2"><span class="model-name">스탠드</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m3"><label for="m3"><span class="model-name">1/2way</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m4"><label for="m4"><span class="model-name">4way</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m5"><label for="m5"><span class="model-name">벽걸이 와이드</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m6"><label for="m6"><span class="model-name">1way 와이드</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m7"><label for="m7"><span class="model-name">FCU 1way</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m8"><label for="m8"><span class="model-name">FCU 4way</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m9"><label for="m9"><span class="model-name">원형</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m10"><label for="m10"><span class="model-name">업소용 스탠드</span></label></div>
+        <div class="model-opt"><input type="checkbox" id="m11"><label for="m11"><span class="model-name">2in1</span></label></div>
+      </div>
+    </div>
+
     <!-- 작업 조건 -->
     <div class="card">
       <div class="card-title">
@@ -342,22 +380,10 @@
         <div id="ceilingDisabledMsg" style="display:none; margin-top:8px; font-size:12px; color:var(--danger);">사다리 미보유로 자동으로 불가 처리됩니다.</div>
       </div>
 
-      <!-- 제품 종류 -->
-      <div class="cond-category">
-        <div class="cond-cat-title">작업 가능 제품</div>
-        <div class="checkbox-group">
-          <div class="check-opt"><input type="checkbox" id="p1"><label for="p1">가정용 ✓</label></div>
-          <div class="check-opt"><input type="checkbox" id="p2"><label for="p2">업소용 불가</label></div>
-          <div class="check-opt"><input type="checkbox" id="p3"><label for="p3">구형 제품 불가</label></div>
-          <div class="check-opt"><input type="checkbox" id="p4"><label for="p4">미켈란젤로 불가</label></div>
-          <div class="check-opt"><input type="checkbox" id="p5"><label for="p5">오브제 불가</label></div>
-        </div>
-      </div>
-
-      <!-- 기타 조건 -->
+      <!-- 기타 불가 -->
       <div class="cond-category">
         <div class="cond-cat-title">기타 불가 사항</div>
-        <textarea id="etcRestrict" style="min-height:70px" placeholder="위 항목 외 추가로 안 되는 작업이 있으면 자유롭게 적어주세요.&#10;예: 특정 브랜드 불가, 구형 에어컨 불가 등"></textarea>
+        <textarea id="etcRestrict" style="min-height:70px" placeholder="예: 특정 제품 불가 등"></textarea>
       </div>
     </div>
 
@@ -551,6 +577,14 @@ function setupCondDetail(name, detailId) {
 setupCondDetail('duplex', 'duplexDetail');
 setupCondDetail('ceiling', 'ceilingDetail');
 
+// 전화번호 자동 하이픈
+document.getElementById('expertPhone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g, '');
+  if (v.length <= 3) this.value = v;
+  else if (v.length <= 7) this.value = v.slice(0,3) + '-' + v.slice(3);
+  else this.value = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+});
+
 // 사다리 미보유 시 복층·층고 비활성화
 function updateLadderDependents() {
   const hasLadder = document.querySelector('input[name="ladder"]:checked').value === '보유';
@@ -612,12 +646,14 @@ document.getElementById('mainForm').addEventListener('submit', async e => {
   const ceilingVal = document.querySelector('input[name="ceiling"]:checked').value;
   const ceilingDetail = document.getElementById('ceilingDetail').querySelector('input').value;
 
-  const productFlags = [];
-  if (document.getElementById('p1').checked) productFlags.push('가정용만');
-  if (document.getElementById('p2').checked) productFlags.push('업소용불가');
-  if (document.getElementById('p3').checked) productFlags.push('구형불가');
-  if (document.getElementById('p4').checked) productFlags.push('미켈란젤로불가');
-  if (document.getElementById('p5').checked) productFlags.push('오브제불가');
+  const modelIds = ['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10','m11'];
+  const modelNames = ['벽걸이','스탠드','1/2way','4way','벽걸이 와이드','1way 와이드','FCU 1way','FCU 4way','원형','업소용 스탠드','2in1'];
+  const noModels = modelIds.filter((_,i) => document.getElementById(modelIds[i]).checked).map((_,i) => modelNames[i]);
+  // filter + map 인덱스 맞춰서 다시
+  const noModelList = modelIds.reduce((acc, id, i) => {
+    if (document.getElementById(id).checked) acc.push(modelNames[i]);
+    return acc;
+  }, []);
 
   const payload = {
     timestamp: new Date().toLocaleString('ko-KR'),
@@ -629,7 +665,7 @@ document.getElementById('mainForm').addEventListener('submit', async e => {
     ladder: document.querySelector('input[name="ladder"]:checked').value,
     duplex: duplexVal === '조건부 가능' ? `조건부(${duplexDetail})` : duplexVal,
     ceiling: ceilingVal === '조건부 가능' ? `조건부(${ceilingDetail})` : ceilingVal,
-    products: productFlags.join(', '),
+    noModels: noModelList.join(', '),
     etcRestrict: document.getElementById('etcRestrict').value.trim(),
     memo: document.getElementById('memo').value.trim()
   };
