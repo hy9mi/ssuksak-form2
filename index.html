@@ -9,338 +9,142 @@
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #f5f5f3;
-      --surface: #ffffff;
-      --border: #e2e2de;
-      --border-strong: #c8c8c2;
-      --text-primary: #1a1a18;
-      --text-secondary: #6b6b65;
-      --text-hint: #a8a8a0;
-      --accent: #2d6a4f;
-      --accent-light: #e8f4ee;
-      --accent-mid: #52b788;
-      --danger: #c0392b;
-      --danger-light: #fdf0ee;
-      --info-light: #eef4fb;
-      --info: #2563b0;
-      --tag-bg: #e8f4ee;
-      --tag-text: #1a4731;
-      --tag-border: #b7dfca;
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 14px;
+      --bg: #f5f5f3; --surface: #ffffff;
+      --border: #e2e2de; --border-strong: #c8c8c2;
+      --text-primary: #1a1a18; --text-secondary: #6b6b65; --text-hint: #a8a8a0;
+      --accent: #2d6a4f; --accent-light: #e8f4ee; --accent-mid: #52b788;
+      --danger: #c0392b; --danger-light: #fdf0ee;
+      --tag-bg: #e8f4ee; --tag-text: #1a4731; --tag-border: #b7dfca;
+      --sub-bg: #f0f4fb; --sub-text: #1e3a6e; --sub-border: #b8ccec;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
       --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     }
-
-    body {
-      font-family: 'Pretendard', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text-primary);
-      min-height: 100vh;
-      padding: 2rem 1rem 4rem;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
+    body { font-family: 'Pretendard', -apple-system, sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; padding: 2rem 1rem 4rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     .container { max-width: 600px; margin: 0 auto; }
 
-    /* 상단 안내 배너 */
-    .notice-banner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow);
-    }
-    .notice-banner .notice-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .notice-banner p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-    .notice-banner .contact-line {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text-hint);
-    }
+    .notice-banner { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow); }
+    .notice-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+    .notice-banner p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .contact-line { margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-hint); }
     .contact-line .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-mid); flex-shrink: 0; }
 
-    /* 헤더 */
     .form-header { margin-bottom: 1.5rem; }
-    .form-header .brand {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .form-header h1 {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.3;
-    }
-    .form-header p {
-      font-size: 13px;
-      color: var(--text-hint);
-      margin-top: 4px;
-    }
+    .form-header .brand { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+    .form-header h1 { font-size: 22px; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+    .form-header p { font-size: 13px; color: var(--text-hint); margin-top: 4px; }
 
-    /* 카드 섹션 */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: var(--shadow);
-    }
-    .card-title {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      color: var(--text-hint);
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+    .card-title { font-size: 12px; font-weight: 600; letter-spacing: 0.07em; color: var(--text-hint); text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 8px; }
     .card-title svg { width: 14px; height: 14px; stroke: var(--text-hint); flex-shrink: 0; }
 
-    /* 필드 */
     .field { margin-bottom: 1.1rem; }
     .field:last-child { margin-bottom: 0; }
-    .field > label {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-    }
+    .field > label { display: block; font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
     .req { color: var(--danger); margin-left: 2px; }
-    input[type="text"], textarea, select {
-      width: 100%;
-      padding: 10px 13px;
-      font-size: 14px;
-      font-family: inherit;
-      color: var(--text-primary);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      outline: none;
-      transition: border-color 0.15s;
-      -webkit-appearance: none;
+    input[type="text"], input[type="tel"], textarea, select {
+      width: 100%; padding: 10px 13px; font-size: 14px; font-family: inherit;
+      color: var(--text-primary); background: var(--bg);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      outline: none; transition: border-color 0.15s; -webkit-appearance: none;
     }
-    input[type="text"]:focus, textarea:focus, select:focus {
-      border-color: var(--accent-mid);
-      background: #fff;
-    }
+    input[type="text"]:focus, input[type="tel"]:focus, textarea:focus, select:focus { border-color: var(--accent-mid); background: #fff; }
     textarea { resize: vertical; min-height: 88px; line-height: 1.6; }
     ::placeholder { color: var(--text-hint); }
 
-    /* 팀 토글 */
-    .toggle-label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 1.1rem;
-      user-select: none;
-    }
-    .toggle-switch {
-      position: relative;
-      width: 38px;
-      height: 22px;
-      flex-shrink: 0;
-    }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
-    .toggle-track {
-      position: absolute; inset: 0;
-      background: var(--border-strong);
-      border-radius: 999px;
-      transition: background 0.2s;
-    }
-    .toggle-thumb {
-      position: absolute;
-      top: 3px; left: 3px;
-      width: 16px; height: 16px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .toggle-switch input:checked ~ .toggle-track { background: var(--accent); }
-    .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(16px); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    /* 구성원 행 */
-    .member-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
-    .member-row input { flex: 1; }
-    .icon-btn {
-      width: 34px; height: 34px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: var(--bg);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: border-color 0.15s, background 0.15s;
+    /* 지역 탭 */
+    .region-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+    .region-tab {
+      flex: 1; padding: 9px 8px; font-size: 13px; font-weight: 500; font-family: inherit;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; text-align: center; transition: all 0.15s;
     }
-    .icon-btn:hover { border-color: var(--danger); background: var(--danger-light); }
-    .icon-btn svg { width: 14px; height: 14px; stroke: var(--text-hint); }
-    .icon-btn:hover svg { stroke: var(--danger); }
-    .add-member-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 14px;
-      font-size: 13px; font-family: inherit;
-      color: var(--accent);
-      border: 1px dashed var(--accent-mid);
-      border-radius: var(--radius-sm);
-      background: none;
-      cursor: pointer;
-      margin-top: 4px;
-      transition: background 0.15s;
-    }
-    .add-member-btn:hover { background: var(--accent-light); }
-    .add-member-btn svg { width: 13px; height: 13px; stroke: var(--accent); }
+    .region-tab.active-main { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+    .region-tab.active-sub { border-color: #3b6bc7; background: var(--sub-bg); color: var(--sub-text); }
+    .region-tab-hint { font-size: 12px; color: var(--text-hint); margin-bottom: 10px; line-height: 1.6; }
 
-    /* 지역 선택 */
     .region-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
     .select-wrap { position: relative; }
     .select-wrap select { padding-right: 32px; cursor: pointer; }
-    .select-wrap .chevron {
-      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-      pointer-events: none;
-      width: 14px; height: 14px; stroke: var(--text-hint);
-    }
+    .select-wrap .chevron { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; width: 14px; height: 14px; stroke: var(--text-hint); }
+
     .gu-dropdown-btn {
-      width: 100%; padding: 10px 13px;
-      font-size: 14px; font-family: inherit;
-      color: var(--text-primary);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      width: 100%; padding: 10px 13px; font-size: 14px; font-family: inherit;
+      color: var(--text-primary); background: var(--bg);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
       cursor: pointer; text-align: left;
       display: flex; align-items: center; justify-content: space-between;
       transition: border-color 0.15s;
     }
-    .gu-dropdown-btn:focus, .gu-dropdown-btn.open { border-color: var(--accent-mid); background: #fff; }
+    .gu-dropdown-btn.open, .gu-dropdown-btn:focus { border-color: var(--accent-mid); background: #fff; }
     .gu-dropdown-btn .placeholder { color: var(--text-hint); }
     .gu-dropdown-btn svg { width: 14px; height: 14px; stroke: var(--text-hint); flex-shrink: 0; transition: transform 0.2s; }
     .gu-dropdown-btn.open svg { transform: rotate(180deg); }
-    .gu-panel {
-      display: none;
-      border: 1px solid var(--border);
-      border-top: none;
-      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-      background: #fff;
-      max-height: 210px;
-      overflow-y: auto;
-      margin-top: -1px;
-    }
+    .gu-panel { display: none; border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); background: #fff; max-height: 210px; overflow-y: auto; margin-top: -1px; }
     .gu-panel.open { display: block; }
-    .gu-all-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 9px 13px;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px; font-weight: 500;
-      color: var(--text-secondary);
-      cursor: pointer;
-    }
+    .gu-all-row { display: flex; align-items: center; gap: 10px; padding: 9px 13px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--text-secondary); cursor: pointer; }
     .gu-all-row:hover { background: var(--bg); }
-    .gu-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 13px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
+    .gu-item { display: flex; align-items: center; gap: 10px; padding: 8px 13px; font-size: 14px; cursor: pointer; transition: background 0.1s; }
     .gu-item:hover { background: var(--bg); }
     .gu-item.sel { background: var(--accent-light); }
     .gu-item.sel span { color: var(--accent); font-weight: 500; }
-    .gu-item input[type="checkbox"], .gu-all-row input[type="checkbox"] {
-      width: 15px; height: 15px;
-      accent-color: var(--accent);
-      cursor: pointer;
-      flex-shrink: 0;
-      background: none; border: none; padding: 0;
-    }
+    .gu-item input[type="checkbox"], .gu-all-row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; background: none; border: none; padding: 0; }
+
+    .region-section { display: none; }
+    .region-section.active { display: block; }
+
+    .tags-label { font-size: 12px; font-weight: 500; color: var(--text-hint); margin-bottom: 6px; margin-top: 14px; letter-spacing: 0.04em; }
     .region-tags { display: flex; flex-wrap: wrap; gap: 6px; min-height: 0; }
     .rtag {
       display: inline-flex; align-items: center; gap: 5px;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      border: 1px solid var(--tag-border);
-      border-radius: 999px;
-      padding: 3px 10px 3px 12px;
-      font-size: 13px;
+      background: var(--tag-bg); color: var(--tag-text); border: 1px solid var(--tag-border);
+      border-radius: 999px; padding: 3px 10px 3px 12px; font-size: 13px;
     }
-    .rtag button {
-      background: none; border: none; cursor: pointer;
-      color: var(--tag-text); opacity: 0.5;
-      font-size: 15px; line-height: 1; padding: 0;
-    }
+    .rtag.sub { background: var(--sub-bg); color: var(--sub-text); border-color: var(--sub-border); }
+    .rtag button { background: none; border: none; cursor: pointer; color: inherit; opacity: 0.5; font-size: 15px; line-height: 1; padding: 0; }
     .rtag button:hover { opacity: 1; }
 
-    /* 불가 항목 */
-    .restrict-item {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      margin-bottom: 6px;
-      overflow: hidden;
-      transition: border-color 0.15s;
-    }
-    .restrict-header {
-      display: flex; align-items: center; gap: 10px;
-      padding: 11px 13px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .restrict-header:hover { background: var(--bg); }
-    .restrict-header input[type="checkbox"] {
-      width: 15px; height: 15px;
-      accent-color: var(--accent);
-      cursor: pointer; flex-shrink: 0;
-      background: none; border: none; padding: 0;
-    }
-    .restrict-header span { font-size: 14px; flex: 1; }
-    .restrict-body { display: none; padding: 0 13px 13px; }
-    .restrict-item.on { border-color: var(--accent-mid); }
-    .restrict-item.on .restrict-header { background: var(--accent-light); }
-    .restrict-item.on .restrict-body { display: block; }
-    .restrict-body input, .restrict-body textarea {
-      margin-top: 8px;
-      background: #fff;
-    }
+    /* 작업 조건 카테고리 */
+    .cond-category { margin-bottom: 1rem; }
+    .cond-category:last-child { margin-bottom: 0; }
+    .cond-cat-title { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .cond-cat-title::before { content: ''; display: inline-block; width: 3px; height: 13px; background: var(--accent-mid); border-radius: 2px; }
 
-    /* 제출 버튼 */
+    .radio-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .radio-opt { position: relative; }
+    .radio-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .radio-opt label {
+      display: block; padding: 7px 14px; font-size: 13px; font-family: inherit;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.15s; user-select: none; white-space: nowrap;
+    }
+    .radio-opt input:checked + label { border-color: var(--accent); background: var(--accent-light); color: var(--accent); font-weight: 500; }
+    .radio-opt.warn input:checked + label { border-color: #c07000; background: #fff8ee; color: #7a4500; }
+    .radio-opt.no input:checked + label { border-color: var(--danger); background: var(--danger-light); color: var(--danger); }
+
+    .cond-detail { margin-top: 8px; display: none; }
+    .cond-detail.show { display: block; }
+    .cond-detail input { background: #fff; }
+
+    .checkbox-group { display: flex; flex-wrap: wrap; gap: 6px; }
+    .check-opt { position: relative; }
+    .check-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .check-opt label {
+      display: block; padding: 7px 14px; font-size: 13px; font-family: inherit;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .check-opt input:checked + label { border-color: var(--danger); background: var(--danger-light); color: var(--danger); font-weight: 500; }
+
     .submit-btn {
-      width: 100%;
-      padding: 15px;
-      font-size: 15px; font-weight: 600; font-family: inherit;
-      color: #fff;
-      background: var(--accent);
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      margin-top: 0.5rem;
+      width: 100%; padding: 15px; font-size: 15px; font-weight: 600; font-family: inherit;
+      color: #fff; background: var(--accent); border: none; border-radius: var(--radius-md);
+      cursor: pointer; margin-top: 0.5rem;
       transition: background 0.15s, transform 0.1s;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
@@ -349,33 +153,13 @@
     .submit-btn svg { width: 18px; height: 18px; stroke: #fff; }
     .submit-btn.loading { opacity: 0.7; pointer-events: none; }
 
-    /* 완료 화면 */
-    .success-screen {
-      display: none;
-      text-align: center;
-      padding: 3rem 1.5rem;
-    }
-    .success-screen .check-icon {
-      width: 56px; height: 56px;
-      background: var(--accent-light);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem;
-    }
-    .success-screen .check-icon svg { width: 28px; height: 28px; stroke: var(--accent); }
-    .success-screen h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-    .success-screen p { font-size: 14px; color: var(--text-secondary); }
-
-    /* 에러 메시지 */
-    .error-msg {
-      font-size: 12px; color: var(--danger);
-      margin-top: 4px; display: none;
-    }
+    .success-screen { display: none; }
+    .error-msg { font-size: 12px; color: var(--danger); margin-top: 4px; display: none; }
     .field.has-error input, .field.has-error textarea { border-color: var(--danger); }
     .field.has-error .error-msg { display: block; }
 
     @media (max-width: 480px) {
-      .region-grid { grid-template-columns: 1fr; }
+      .region-grid, .two-col { grid-template-columns: 1fr; }
       body { padding: 1rem 0.75rem 3rem; }
       .card { padding: 1.25rem; }
     }
@@ -384,22 +168,20 @@
 <body>
 <div class="container">
 
-  <!-- 상단 안내 배너 -->
   <div class="notice-banner">
     <div class="notice-label">전문가 여러분께</div>
     <p>더 나은 매칭 환경을 만들기 위해 현재 상태를 업데이트해 주세요.<br>
-    활동 가능 지역과 불가 품목을 정확히 입력해 주실수록, 불필요한 배정을 줄이고 전문가님께 맞는 건만 연결해 드릴 수 있습니다.</p>
+    정확한 정보를 입력해 주실수록 불필요한 배정을 줄이고 전문가님께 맞는 건만 연결해 드릴 수 있습니다.</p>
     <div class="contact-line">
       <div class="dot"></div>
       현재 활성·비활성 지역이 궁금하시면 담당자에게 별도로 연락 주세요.
     </div>
   </div>
 
-  <!-- 폼 헤더 -->
   <div class="form-header">
     <div class="brand">쓱싹</div>
     <h1>전문가 현황 업데이트</h1>
-    <p>입력하신 내용은 즉시 내부 시스템에 반영됩니다.<br>팀으로 움직이시는 분들은 팀명과 전문가님 개인으로 작성 부탁드립니다.</p>
+    <p>입력하신 내용은 즉시 내부 시스템에 반영됩니다.</p>
   </div>
 
   <form id="mainForm" novalidate>
@@ -410,40 +192,16 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
         기본 정보
       </div>
-
-      <label class="toggle-label">
-        <span class="toggle-switch">
-          <input type="checkbox" id="teamToggle" onchange="toggleTeam(this)">
-          <span class="toggle-track"></span>
-          <span class="toggle-thumb"></span>
-        </span>
-        팀 단위로 등록
-      </label>
-
-      <div id="soloSection">
+      <div class="two-col">
         <div class="field" id="expertNameField">
-          <label>전문가 성함 <span class="req">*</span></label>
+          <label>성함 <span class="req">*</span></label>
           <input type="text" id="expertName" placeholder="홍길동" autocomplete="name">
           <div class="error-msg">성함을 입력해주세요.</div>
         </div>
-      </div>
-
-      <div id="teamSection" style="display:none">
-        <div class="field">
-          <label>팀명 <span class="req">*</span></label>
-          <input type="text" id="teamName" placeholder="예) OOO팀">
-        </div>
-        <div class="field">
-          <label>팀 구성원</label>
-          <div id="memberList">
-            <div class="member-row">
-              <input type="text" class="member-input" placeholder="전문가 성함">
-            </div>
-          </div>
-          <button type="button" class="add-member-btn" onclick="addMember()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            구성원 추가
-          </button>
+        <div class="field" id="expertPhoneField">
+          <label>연락처 <span class="req">*</span></label>
+          <input type="tel" id="expertPhone" placeholder="010-0000-0000" autocomplete="tel">
+          <div class="error-msg">연락처를 입력해주세요.</div>
         </div>
       </div>
     </div>
@@ -455,71 +213,151 @@
         활동 가능 지역
       </div>
 
-      <div class="region-grid">
-        <div class="field" style="margin-bottom:0">
-          <label>시 / 도</label>
-          <div class="select-wrap">
-            <select id="sidoSelect" onchange="onSidoChange(this.value)">
-              <option value="">선택해주세요</option>
-            </select>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="region-tabs">
+        <button type="button" class="region-tab active-main" id="tabMain" onclick="switchRegionTab('main')">
+          🟢 주 지역
+        </button>
+        <button type="button" class="region-tab" id="tabSub" onclick="switchRegionTab('sub')">
+          🔵 부 지역
+        </button>
+      </div>
+
+      <div id="hintMain" class="region-tab-hint">
+        <strong>주 지역</strong> — 1대부터 출동 가능한 메인 활동 구역이에요.
+      </div>
+      <div id="hintSub" class="region-tab-hint" style="display:none">
+        <strong>부 지역</strong> — 거리상 조금 애매하지만 조건부로 가능한 구역이에요.<br>
+        예) 2대 이상일 때, 비성수기에, 사전 협의 시 등 — 아래 메모에 조건을 남겨주세요.
+      </div>
+
+      <div class="region-section active" id="sectionMain">
+        <div class="region-grid">
+          <div class="field" style="margin-bottom:0">
+            <label>시 / 도</label>
+            <div class="select-wrap">
+              <select id="sidoSelectMain" onchange="onSidoChange('main', this.value)">
+                <option value="">선택해주세요</option>
+              </select>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="field" style="margin-bottom:0; position:relative;">
+            <label>시 / 군 / 구</label>
+            <button type="button" class="gu-dropdown-btn" id="guBtnMain" onclick="toggleGuPanel('main')">
+              <span id="guBtnLabelMain" class="placeholder">시/도를 먼저 선택하세요</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="gu-panel" id="guPanelMain">
+              <div class="gu-all-row" onclick="toggleAll('main')">
+                <input type="checkbox" id="allCheckMain" onclick="event.stopPropagation(); toggleAll('main')"> 전체 선택
+              </div>
+              <div id="guListInnerMain"></div>
+            </div>
           </div>
         </div>
-        <div class="field" style="margin-bottom:0; position:relative;">
-          <label>시 / 군 / 구</label>
-          <button type="button" class="gu-dropdown-btn" id="guBtn" onclick="toggleGuPanel()">
-            <span id="guBtnLabel" class="placeholder">시/도를 먼저 선택하세요</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="gu-panel" id="guPanel">
-            <div class="gu-all-row" id="guAllRow" onclick="toggleAll()">
-              <input type="checkbox" id="allCheck" onclick="event.stopPropagation(); toggleAll()"> 전체 선택
-            </div>
-            <div id="guListInner"></div>
-          </div>
+        <div id="tagsMainWrap" style="display:none">
+          <div class="tags-label">선택된 주 지역</div>
+          <div class="region-tags" id="regionTagsMain"></div>
         </div>
       </div>
 
-      <div class="region-tags" id="regionTags"></div>
+      <div class="region-section" id="sectionSub">
+        <div class="region-grid">
+          <div class="field" style="margin-bottom:0">
+            <label>시 / 도</label>
+            <div class="select-wrap">
+              <select id="sidoSelectSub" onchange="onSidoChange('sub', this.value)">
+                <option value="">선택해주세요</option>
+              </select>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="field" style="margin-bottom:0; position:relative;">
+            <label>시 / 군 / 구</label>
+            <button type="button" class="gu-dropdown-btn" id="guBtnSub" onclick="toggleGuPanel('sub')">
+              <span id="guBtnLabelSub" class="placeholder">시/도를 먼저 선택하세요</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="gu-panel" id="guPanelSub">
+              <div class="gu-all-row" onclick="toggleAll('sub')">
+                <input type="checkbox" id="allCheckSub" onclick="event.stopPropagation(); toggleAll('sub')"> 전체 선택
+              </div>
+              <div id="guListInnerSub"></div>
+            </div>
+          </div>
+        </div>
+        <div id="tagsSubWrap" style="display:none">
+          <div class="tags-label">선택된 부 지역</div>
+          <div class="region-tags" id="regionTagsSub"></div>
+        </div>
+        <div class="field" style="margin-top:12px; margin-bottom:0">
+          <label>부 지역 출동 조건 <span style="font-weight:400; color:var(--text-hint)">(선택)</span></label>
+          <input type="text" id="subCondition" placeholder="예: 2대 이상, 비성수기, 사전 협의 필요 등">
+        </div>
+      </div>
+
     </div>
 
-    <!-- 품목 불가 -->
+    <!-- 작업 조건 -->
     <div class="card">
       <div class="card-title">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-        품목 불가 사항
+        작업 조건
       </div>
 
-      <div class="restrict-item" id="ri1">
-        <div class="restrict-header" onclick="toggleRestrict('ri1')">
-          <input type="checkbox" onclick="event.stopPropagation(); toggleRestrict('ri1')"> <span>구형 제품 불가</span>
+      <!-- 사다리 보유 -->
+      <div class="cond-category">
+        <div class="cond-cat-title">사다리 보유</div>
+        <div class="radio-group">
+          <div class="radio-opt"><input type="radio" name="ladder" id="l1" value="보유" checked><label for="l1">보유</label></div>
+          <div class="radio-opt no"><input type="radio" name="ladder" id="l2" value="미보유"><label for="l2">미보유</label></div>
         </div>
       </div>
-      <div class="restrict-item" id="ri2">
-        <div class="restrict-header" onclick="toggleRestrict('ri2')">
-          <input type="checkbox" onclick="event.stopPropagation(); toggleRestrict('ri2')"> <span>미켈란젤로 불가</span>
+
+      <!-- 복층 -->
+      <div class="cond-category" id="duplexBlock">
+        <div class="cond-cat-title">복층</div>
+        <div class="radio-group">
+          <div class="radio-opt"><input type="radio" name="duplex" id="d1" value="가능" checked><label for="d1">가능</label></div>
+          <div class="radio-opt warn"><input type="radio" name="duplex" id="d2" value="조건부 가능"><label for="d2">조건부 가능</label></div>
+          <div class="radio-opt no"><input type="radio" name="duplex" id="d3" value="불가"><label for="d3">불가</label></div>
+        </div>
+        <div class="cond-detail" id="duplexDetail">
+          <input type="text" placeholder="예: 관리소 있으면 가능, 3m 이하만 가능 등">
+        </div>
+        <div id="duplexDisabledMsg" style="display:none; margin-top:8px; font-size:12px; color:var(--danger);">사다리 미보유로 자동으로 불가 처리됩니다.</div>
+      </div>
+
+      <!-- 층고 -->
+      <div class="cond-category" id="ceilingBlock">
+        <div class="cond-cat-title">층고</div>
+        <div class="radio-group">
+          <div class="radio-opt"><input type="radio" name="ceiling" id="c1" value="제한 없음" checked><label for="c1">제한 없음</label></div>
+          <div class="radio-opt warn"><input type="radio" name="ceiling" id="c2" value="조건부 가능"><label for="c2">조건부 가능</label></div>
+          <div class="radio-opt no"><input type="radio" name="ceiling" id="c3" value="불가"><label for="c3">불가</label></div>
+        </div>
+        <div class="cond-detail" id="ceilingDetail">
+          <input type="text" placeholder="예: 2.5m까지 가능, 3m 이상 불가 등">
+        </div>
+        <div id="ceilingDisabledMsg" style="display:none; margin-top:8px; font-size:12px; color:var(--danger);">사다리 미보유로 자동으로 불가 처리됩니다.</div>
+      </div>
+
+      <!-- 제품 종류 -->
+      <div class="cond-category">
+        <div class="cond-cat-title">작업 가능 제품</div>
+        <div class="checkbox-group">
+          <div class="check-opt"><input type="checkbox" id="p1"><label for="p1">가정용 ✓</label></div>
+          <div class="check-opt"><input type="checkbox" id="p2"><label for="p2">업소용 불가</label></div>
+          <div class="check-opt"><input type="checkbox" id="p3"><label for="p3">구형 제품 불가</label></div>
+          <div class="check-opt"><input type="checkbox" id="p4"><label for="p4">미켈란젤로 불가</label></div>
+          <div class="check-opt"><input type="checkbox" id="p5"><label for="p5">오브제 불가</label></div>
         </div>
       </div>
-      <div class="restrict-item" id="ri3">
-        <div class="restrict-header" onclick="toggleRestrict('ri3')">
-          <input type="checkbox" onclick="event.stopPropagation(); toggleRestrict('ri3')"> <span>복층 불가</span>
-        </div>
-      </div>
-      <div class="restrict-item" id="ri4">
-        <div class="restrict-header" onclick="toggleRestrict('ri4')">
-          <input type="checkbox" onclick="event.stopPropagation(); toggleRestrict('ri4')"> <span>층고 제한</span>
-        </div>
-        <div class="restrict-body">
-          <input type="text" placeholder="예: 3m 이상 불가" onclick="event.stopPropagation()">
-        </div>
-      </div>
-      <div class="restrict-item" id="ri5">
-        <div class="restrict-header" onclick="toggleRestrict('ri5')">
-          <input type="checkbox" onclick="event.stopPropagation(); toggleRestrict('ri5')"> <span>기타</span>
-        </div>
-        <div class="restrict-body">
-          <textarea placeholder="직접 입력해주세요" onclick="event.stopPropagation()"></textarea>
-        </div>
+
+      <!-- 기타 조건 -->
+      <div class="cond-category">
+        <div class="cond-cat-title">기타 불가 사항</div>
+        <textarea id="etcRestrict" style="min-height:70px" placeholder="위 항목 외 추가로 안 되는 작업이 있으면 자유롭게 적어주세요.&#10;예: 특정 브랜드 불가, 구형 에어컨 불가 등"></textarea>
       </div>
     </div>
 
@@ -529,7 +367,17 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         추가 메모
       </div>
-      <textarea id="memo" placeholder="기타 특이사항이나 전달 내용을 자유롭게 입력해주세요"></textarea>
+      <textarea id="memo" placeholder="기타 전달 내용을 자유롭게 입력해주세요"></textarea>
+    </div>
+
+    <!-- 결제 안내 -->
+    <div class="notice-banner" style="border-left-color: #c07000; margin-bottom: 1rem;">
+      <div class="notice-label" style="color: #c07000;">💳 크몽 결제 안내</div>
+      <p style="font-size:13px; line-height:1.8;">
+        크몽 정책상 <strong>크몽 예약건은 반드시 크몽을 통해 결제</strong>받아야 합니다.<br>
+        현장에서 직접 수취하지 말아 주세요.<br><br>
+        <strong>쓱싹 앱에서 결제수단을 현금으로 선택</strong>해두시고 담당자에게 알려주시면, 저희가 결제를 반영해서 요청을 보내드리고 있습니다.
+      </p>
     </div>
 
     <button type="submit" class="submit-btn" id="submitBtn">
@@ -539,245 +387,266 @@
 
   </form>
 
-  <!-- 완료 화면 -->
   <div class="success-screen" id="successScreen">
-    <div class="card" style="padding: 3rem 1.5rem; text-align:center;">
-      <div class="check-icon" style="margin: 0 auto 1.25rem;">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <div class="card" style="padding: 3rem 1.5rem; text-align:center; margin-top:1rem;">
+      <div style="width:56px;height:56px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" style="width:28px;height:28px;stroke:var(--accent)"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h2>업데이트 완료!</h2>
-      <p style="margin-top: 8px; color: var(--text-secondary); font-size: 14px;">소중한 정보를 제공해 주셔서 감사합니다.<br>더 나은 매칭으로 보답하겠습니다.</p>
+      <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">업데이트 완료!</h2>
+      <p style="color:var(--text-secondary);font-size:14px;">소중한 정보 감사합니다.<br>더 나은 매칭으로 보답하겠습니다.</p>
     </div>
   </div>
 
 </div>
-
 <script>
-  // ───── 구글 시트 연동 설정 ─────
-  // Apps Script 배포 후 아래 URL을 교체하세요
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyzVMUMkQ_mfbDGkCwfgXNik4F3XNN-HVuIl_toD6M4_Szg5Zd1zwvakKVH_fdoXjU2/exec';
-  // ─────────────────────────────
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzTb3Ve58-sCHNP5TWzdev8TyaON9HeffyvQteDm9jrR_nDfU4ia269uQt5fMO0eIbB/exec';
 
-  const REGIONS = {
-    "서울특별시": ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
-    "경기도": ["수원시","성남시","의정부시","안양시","부천시","광명시","평택시","동두천시","안산시","고양시","과천시","구리시","남양주시","오산시","시흥시","군포시","의왕시","하남시","용인시","파주시","이천시","안성시","김포시","화성시","광주시","양주시","포천시","여주시","연천군","가평군","양평군"],
-    "인천광역시": ["중구","동구","미추홀구","연수구","남동구","부평구","계양구","서구","강화군","옹진군"],
-    "부산광역시": ["중구","서구","동구","영도구","부산진구","동래구","남구","북구","해운대구","사하구","금정구","강서구","연제구","수영구","사상구","기장군"],
-    "대구광역시": ["중구","동구","서구","남구","북구","수성구","달서구","달성군","군위군"],
-    "광주광역시": ["동구","서구","남구","북구","광산구"],
-    "대전광역시": ["동구","중구","서구","유성구","대덕구"],
-    "울산광역시": ["중구","남구","동구","북구","울주군"],
-    "세종특별자치시": ["세종시"],
-    "강원특별자치도": ["춘천시","원주시","강릉시","동해시","태백시","속초시","삼척시","홍천군","횡성군","영월군","평창군","정선군","철원군","화천군","양구군","인제군","고성군","양양군"],
-    "충청북도": ["청주시","충주시","제천시","보은군","옥천군","영동군","증평군","진천군","괴산군","음성군","단양군"],
-    "충청남도": ["천안시","공주시","보령시","아산시","서산시","논산시","계룡시","당진시","금산군","부여군","서천군","청양군","홍성군","예산군","태안군"],
-    "전북특별자치도": ["전주시","군산시","익산시","정읍시","남원시","김제시","완주군","진안군","무주군","장수군","임실군","순창군","고창군","부안군"],
-    "전라남도": ["목포시","여수시","순천시","나주시","광양시","담양군","곡성군","구례군","고흥군","보성군","화순군","장흥군","강진군","해남군","영암군","무안군","함평군","영광군","장성군","완도군","진도군","신안군"],
-    "경상북도": ["포항시","경주시","김천시","안동시","구미시","영주시","영천시","상주시","문경시","경산시","의성군","청송군","영양군","영덕군","청도군","고령군","성주군","칠곡군","예천군","봉화군","울진군","울릉군"],
-    "경상남도": ["창원시","진주시","통영시","사천시","김해시","밀양시","거제시","양산시","의령군","함안군","창녕군","고성군","남해군","하동군","산청군","함양군","거창군","합천군"],
-    "제주특별자치도": ["제주시","서귀포시"]
+const REGIONS = {
+  "서울특별시": ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
+  "경기도": ["수원시","성남시","의정부시","안양시","부천시","광명시","평택시","동두천시","안산시","고양시","과천시","구리시","남양주시","오산시","시흥시","군포시","의왕시","하남시","용인시","파주시","이천시","안성시","김포시","화성시","광주시","양주시","포천시","여주시","연천군","가평군","양평군"],
+  "인천광역시": ["중구","동구","미추홀구","연수구","남동구","부평구","계양구","서구","강화군","옹진군"],
+  "부산광역시": ["중구","서구","동구","영도구","부산진구","동래구","남구","북구","해운대구","사하구","금정구","강서구","연제구","수영구","사상구","기장군"],
+  "대구광역시": ["중구","동구","서구","남구","북구","수성구","달서구","달성군","군위군"],
+  "광주광역시": ["동구","서구","남구","북구","광산구"],
+  "대전광역시": ["동구","중구","서구","유성구","대덕구"],
+  "울산광역시": ["중구","남구","동구","북구","울주군"],
+  "세종특별자치시": ["세종시"],
+  "강원특별자치도": ["춘천시","원주시","강릉시","동해시","태백시","속초시","삼척시","홍천군","횡성군","영월군","평창군","정선군","철원군","화천군","양구군","인제군","고성군","양양군"],
+  "충청북도": ["청주시","충주시","제천시","보은군","옥천군","영동군","증평군","진천군","괴산군","음성군","단양군"],
+  "충청남도": ["천안시","공주시","보령시","아산시","서산시","논산시","계룡시","당진시","금산군","부여군","서천군","청양군","홍성군","예산군","태안군"],
+  "전북특별자치도": ["전주시","군산시","익산시","정읍시","남원시","김제시","완주군","진안군","무주군","장수군","임실군","순창군","고창군","부안군"],
+  "전라남도": ["목포시","여수시","순천시","나주시","광양시","담양군","곡성군","구례군","고흥군","보성군","화순군","장흥군","강진군","해남군","영암군","무안군","함평군","영광군","장성군","완도군","진도군","신안군"],
+  "경상북도": ["포항시","경주시","김천시","안동시","구미시","영주시","영천시","상주시","문경시","경산시","의성군","청송군","영양군","영덕군","청도군","고령군","성주군","칠곡군","예천군","봉화군","울진군","울릉군"],
+  "경상남도": ["창원시","진주시","통영시","사천시","김해시","밀양시","거제시","양산시","의령군","함안군","창녕군","고성군","남해군","하동군","산청군","함양군","거창군","합천군"],
+  "제주특별자치도": ["제주시","서귀포시"]
+};
+
+const selected = { main: {}, sub: {} };
+const currentSido = { main: '', sub: '' };
+let currentTab = 'main';
+
+// 시도 초기화
+['main','sub'].forEach(t => {
+  const sel = document.getElementById(t === 'main' ? 'sidoSelectMain' : 'sidoSelectSub');
+  Object.keys(REGIONS).forEach(s => {
+    const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o);
+  });
+});
+
+function switchRegionTab(tab) {
+  currentTab = tab;
+  document.getElementById('sectionMain').classList.toggle('active', tab === 'main');
+  document.getElementById('sectionSub').classList.toggle('active', tab === 'sub');
+  document.getElementById('tabMain').className = 'region-tab' + (tab === 'main' ? ' active-main' : '');
+  document.getElementById('tabSub').className = 'region-tab' + (tab === 'sub' ? ' active-sub' : '');
+  document.getElementById('hintMain').style.display = tab === 'main' ? '' : 'none';
+  document.getElementById('hintSub').style.display = tab === 'sub' ? '' : 'none';
+}
+
+function onSidoChange(type, val) {
+  currentSido[type] = val;
+  const btnId = type === 'main' ? 'guBtnMain' : 'guBtnSub';
+  const panelId = type === 'main' ? 'guPanelMain' : 'guPanelSub';
+  document.getElementById(panelId).classList.remove('open');
+  document.getElementById(btnId).classList.remove('open');
+  if (!val) {
+    const lbl = document.getElementById(type === 'main' ? 'guBtnLabelMain' : 'guBtnLabelSub');
+    lbl.textContent = '시/도를 먼저 선택하세요'; lbl.classList.add('placeholder');
+    document.getElementById(type === 'main' ? 'guListInnerMain' : 'guListInnerSub').innerHTML = '';
+    return;
+  }
+  if (!selected[type][val]) selected[type][val] = new Set();
+  renderGuList(type, val);
+  updateGuBtn(type, val);
+}
+
+function toggleGuPanel(type) {
+  const sido = currentSido[type]; if (!sido) return;
+  const btnId = type === 'main' ? 'guBtnMain' : 'guBtnSub';
+  const panelId = type === 'main' ? 'guPanelMain' : 'guPanelSub';
+  document.getElementById(btnId).classList.toggle('open');
+  document.getElementById(panelId).classList.toggle('open');
+}
+
+function renderGuList(type, sido) {
+  const innerId = type === 'main' ? 'guListInnerMain' : 'guListInnerSub';
+  const allCheckId = type === 'main' ? 'allCheckMain' : 'allCheckSub';
+  const inner = document.getElementById(innerId);
+  const gus = REGIONS[sido] || [];
+  const sel = selected[type][sido] || new Set();
+  inner.innerHTML = '';
+  document.getElementById(allCheckId).checked = sel.size === gus.length && gus.length > 0;
+  gus.forEach(gu => {
+    const item = document.createElement('div');
+    item.className = 'gu-item' + (sel.has(gu) ? ' sel' : '');
+    item.innerHTML = `<input type="checkbox" ${sel.has(gu)?'checked':''} onclick="event.stopPropagation(); toggleGu('${type}','${sido}','${gu}',this.checked)"><span>${gu}</span>`;
+    item.addEventListener('click', e => { if (e.target.tagName !== 'INPUT') toggleGu(type, sido, gu, !sel.has(gu)); });
+    inner.appendChild(item);
+  });
+}
+
+function toggleGu(type, sido, gu, checked) {
+  if (!selected[type][sido]) selected[type][sido] = new Set();
+  if (checked) selected[type][sido].add(gu); else selected[type][sido].delete(gu);
+  renderGuList(type, sido);
+  updateGuBtn(type, sido);
+  renderTags(type);
+}
+
+function toggleAll(type) {
+  const sido = currentSido[type]; if (!sido) return;
+  const gus = REGIONS[sido];
+  if (!selected[type][sido]) selected[type][sido] = new Set();
+  const allCheckId = type === 'main' ? 'allCheckMain' : 'allCheckSub';
+  const allCheck = document.getElementById(allCheckId);
+  const will = !allCheck.checked; allCheck.checked = will;
+  if (will) gus.forEach(g => selected[type][sido].add(g)); else selected[type][sido].clear();
+  renderGuList(type, sido);
+  updateGuBtn(type, sido);
+  renderTags(type);
+}
+
+function updateGuBtn(type, sido) {
+  const cnt = selected[type][sido] ? selected[type][sido].size : 0;
+  const lbl = document.getElementById(type === 'main' ? 'guBtnLabelMain' : 'guBtnLabelSub');
+  if (cnt > 0) { lbl.textContent = `${cnt}개 선택됨`; lbl.classList.remove('placeholder'); }
+  else { lbl.textContent = '시/군/구 선택'; lbl.classList.add('placeholder'); }
+}
+
+function renderTags(type) {
+  const containerId = type === 'main' ? 'regionTagsMain' : 'regionTagsSub';
+  const wrapId = type === 'main' ? 'tagsMainWrap' : 'tagsSubWrap';
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  let count = 0;
+  Object.entries(selected[type]).forEach(([sido, gus]) => {
+    const short = sido.replace('특별자치시','').replace('특별자치도','').replace('특별시','').replace('광역시','').replace(/도$/,'').trim();
+    gus.forEach(gu => {
+      count++;
+      const tag = document.createElement('div');
+      tag.className = 'rtag' + (type === 'sub' ? ' sub' : '');
+      tag.innerHTML = `${short} ${gu}<button type="button" onclick="removeTag('${type}','${sido}','${gu}')" title="삭제">×</button>`;
+      container.appendChild(tag);
+    });
+  });
+  document.getElementById(wrapId).style.display = count > 0 ? '' : 'none';
+}
+
+function removeTag(type, sido, gu) {
+  if (selected[type][sido]) selected[type][sido].delete(gu);
+  if (currentSido[type] === sido) { renderGuList(type, sido); updateGuBtn(type, sido); }
+  renderTags(type);
+}
+
+// 작업 조건 조건부 상세
+function setupCondDetail(name, detailId) {
+  document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+    r.addEventListener('change', () => {
+      const val = document.querySelector(`input[name="${name}"]:checked`).value;
+      const detail = document.getElementById(detailId);
+      detail.classList.toggle('show', val === '조건부 가능');
+    });
+  });
+}
+setupCondDetail('duplex', 'duplexDetail');
+setupCondDetail('ceiling', 'ceilingDetail');
+
+// 사다리 미보유 시 복층·층고 비활성화
+function updateLadderDependents() {
+  const hasLadder = document.querySelector('input[name="ladder"]:checked').value === '보유';
+  ['duplexBlock','ceilingBlock'].forEach(id => {
+    const block = document.getElementById(id);
+    block.style.opacity = hasLadder ? '1' : '0.35';
+    block.style.pointerEvents = hasLadder ? '' : 'none';
+  });
+  const msg1 = document.getElementById('duplexDisabledMsg');
+  const msg2 = document.getElementById('ceilingDisabledMsg');
+  if (!hasLadder) {
+    document.getElementById('d3').checked = true;
+    document.getElementById('c3').checked = true;
+    document.getElementById('duplexDetail').classList.remove('show');
+    document.getElementById('ceilingDetail').classList.remove('show');
+    if (msg1) msg1.style.display = '';
+    if (msg2) msg2.style.display = '';
+  } else {
+    if (msg1) msg1.style.display = 'none';
+    if (msg2) msg2.style.display = 'none';
+  }
+}
+document.querySelectorAll('input[name="ladder"]').forEach(r => r.addEventListener('change', updateLadderDependents));
+
+// 외부 클릭 패널 닫기
+document.addEventListener('click', e => {
+  ['main','sub'].forEach(type => {
+    const panelId = type === 'main' ? 'guPanelMain' : 'guPanelSub';
+    const btnId = type === 'main' ? 'guBtnMain' : 'guBtnSub';
+    const panel = document.getElementById(panelId);
+    const btn = document.getElementById(btnId);
+    if (panel && btn && !panel.contains(e.target) && !btn.contains(e.target)) {
+      panel.classList.remove('open'); btn.classList.remove('open');
+    }
+  });
+});
+
+// 제출
+document.getElementById('mainForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  let valid = true;
+
+  const nameField = document.getElementById('expertNameField');
+  if (!document.getElementById('expertName').value.trim()) { nameField.classList.add('has-error'); valid = false; } else nameField.classList.remove('has-error');
+
+  const phoneField = document.getElementById('expertPhoneField');
+  if (!document.getElementById('expertPhone').value.trim()) { phoneField.classList.add('has-error'); valid = false; } else phoneField.classList.remove('has-error');
+
+  if (!valid) return;
+
+  const getRegions = (type) => {
+    const arr = [];
+    Object.entries(selected[type]).forEach(([sido, gus]) => gus.forEach(gu => arr.push(`${sido} ${gu}`)));
+    return arr.join(', ');
   };
 
-  const selected = {};
-  let currentSido = '';
+  const duplexVal = document.querySelector('input[name="duplex"]:checked').value;
+  const duplexDetail = document.getElementById('duplexDetail').querySelector('input').value;
+  const ceilingVal = document.querySelector('input[name="ceiling"]:checked').value;
+  const ceilingDetail = document.getElementById('ceilingDetail').querySelector('input').value;
 
-  // 시도 드롭다운 초기화
-  const sido = document.getElementById('sidoSelect');
-  Object.keys(REGIONS).forEach(s => {
-    const o = document.createElement('option');
-    o.value = s; o.textContent = s;
-    sido.appendChild(o);
-  });
+  const productFlags = [];
+  if (document.getElementById('p1').checked) productFlags.push('가정용만');
+  if (document.getElementById('p2').checked) productFlags.push('업소용불가');
+  if (document.getElementById('p3').checked) productFlags.push('구형불가');
+  if (document.getElementById('p4').checked) productFlags.push('미켈란젤로불가');
+  if (document.getElementById('p5').checked) productFlags.push('오브제불가');
 
-  function onSidoChange(val) {
-    currentSido = val;
-    const btn = document.getElementById('guBtn');
-    const panel = document.getElementById('guPanel');
-    panel.classList.remove('open');
-    btn.classList.remove('open');
-    if (!val) {
-      document.getElementById('guBtnLabel').textContent = '시/도를 먼저 선택하세요';
-      document.getElementById('guBtnLabel').classList.add('placeholder');
-      document.getElementById('guListInner').innerHTML = '';
-      return;
-    }
-    if (!selected[val]) selected[val] = new Set();
-    renderGuList(val);
-    updateGuBtn(val);
+  const payload = {
+    timestamp: new Date().toLocaleString('ko-KR'),
+    name: document.getElementById('expertName').value.trim(),
+    phone: document.getElementById('expertPhone').value.trim(),
+    mainRegions: getRegions('main'),
+    subRegions: getRegions('sub'),
+    subCondition: document.getElementById('subCondition').value.trim(),
+    ladder: document.querySelector('input[name="ladder"]:checked').value,
+    duplex: duplexVal === '조건부 가능' ? `조건부(${duplexDetail})` : duplexVal,
+    ceiling: ceilingVal === '조건부 가능' ? `조건부(${ceilingDetail})` : ceilingVal,
+    products: productFlags.join(', '),
+    etcRestrict: document.getElementById('etcRestrict').value.trim(),
+    memo: document.getElementById('memo').value.trim()
+  };
+
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('loading');
+  try {
+    await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    document.getElementById('mainForm').style.display = 'none';
+    document.querySelector('.notice-banner').style.display = 'none';
+    document.querySelector('.form-header').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+  } catch (err) {
+    alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+    btn.classList.remove('loading');
   }
-
-  function toggleGuPanel() {
-    if (!currentSido) return;
-    const btn = document.getElementById('guBtn');
-    const panel = document.getElementById('guPanel');
-    btn.classList.toggle('open');
-    panel.classList.toggle('open');
-  }
-
-  function renderGuList(sido) {
-    const inner = document.getElementById('guListInner');
-    const gus = REGIONS[sido] || [];
-    const sel = selected[sido] || new Set();
-    inner.innerHTML = '';
-    const allCheck = document.getElementById('allCheck');
-    allCheck.checked = sel.size === gus.length && gus.length > 0;
-    gus.forEach(gu => {
-      const item = document.createElement('div');
-      item.className = 'gu-item' + (sel.has(gu) ? ' sel' : '');
-      item.innerHTML = `<input type="checkbox" ${sel.has(gu)?'checked':''} onclick="event.stopPropagation(); toggleGu('${sido}','${gu}',this.checked)"><span>${gu}</span>`;
-      item.addEventListener('click', e => { if (e.target.tagName !== 'INPUT') toggleGu(sido, gu, !sel.has(gu)); });
-      inner.appendChild(item);
-    });
-  }
-
-  function toggleGu(sido, gu, checked) {
-    if (!selected[sido]) selected[sido] = new Set();
-    if (checked) selected[sido].add(gu); else selected[sido].delete(gu);
-    renderGuList(sido);
-    updateGuBtn(sido);
-    renderTags();
-  }
-
-  function toggleAll() {
-    const sido = currentSido; if (!sido) return;
-    const gus = REGIONS[sido];
-    if (!selected[sido]) selected[sido] = new Set();
-    const allCheck = document.getElementById('allCheck');
-    const willCheck = !allCheck.checked;
-    allCheck.checked = willCheck;
-    if (willCheck) gus.forEach(g => selected[sido].add(g)); else selected[sido].clear();
-    renderGuList(sido);
-    updateGuBtn(sido);
-    renderTags();
-  }
-
-  function updateGuBtn(sido) {
-    const cnt = selected[sido] ? selected[sido].size : 0;
-    const label = document.getElementById('guBtnLabel');
-    if (cnt > 0) { label.textContent = `${cnt}개 선택됨`; label.classList.remove('placeholder'); }
-    else { label.textContent = '시/군/구 선택'; label.classList.add('placeholder'); }
-  }
-
-  function renderTags() {
-    const container = document.getElementById('regionTags');
-    container.innerHTML = '';
-    Object.entries(selected).forEach(([sido, gus]) => {
-      const short = sido.replace('특별자치시','').replace('특별자치도','').replace('특별시','').replace('광역시','').replace(/도$/,'').trim();
-      gus.forEach(gu => {
-        const tag = document.createElement('div');
-        tag.className = 'rtag';
-        tag.innerHTML = `${short} ${gu}<button type="button" onclick="removeTag('${sido}','${gu}')" title="삭제">×</button>`;
-        container.appendChild(tag);
-      });
-    });
-  }
-
-  function removeTag(sido, gu) {
-    if (selected[sido]) selected[sido].delete(gu);
-    if (currentSido === sido) renderGuList(sido), updateGuBtn(sido);
-    renderTags();
-  }
-
-  // 팀 토글
-  function toggleTeam(cb) {
-    document.getElementById('soloSection').style.display = cb.checked ? 'none' : 'block';
-    document.getElementById('teamSection').style.display = cb.checked ? 'block' : 'none';
-  }
-
-  function addMember() {
-    const list = document.getElementById('memberList');
-    const row = document.createElement('div');
-    row.className = 'member-row';
-    row.innerHTML = `<input type="text" class="member-input" placeholder="전문가 성함">
-      <button type="button" class="icon-btn" onclick="this.parentElement.remove()" title="삭제">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>`;
-    list.appendChild(row);
-    row.querySelector('input').focus();
-  }
-
-  // 불가 항목 토글
-  function toggleRestrict(id) {
-    const el = document.getElementById(id);
-    const cb = el.querySelector('input[type="checkbox"]');
-    cb.checked = !cb.checked;
-    el.classList.toggle('on', cb.checked);
-  }
-
-  // 패널 외부 클릭 닫기
-  document.addEventListener('click', e => {
-    const panel = document.getElementById('guPanel');
-    const btn = document.getElementById('guBtn');
-    if (!panel.contains(e.target) && !btn.contains(e.target)) {
-      panel.classList.remove('open');
-      btn.classList.remove('open');
-    }
-  });
-
-  // 폼 제출
-  document.getElementById('mainForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const isTeam = document.getElementById('teamToggle').checked;
-
-    // 유효성 검사
-    let valid = true;
-    if (!isTeam) {
-      const nameField = document.getElementById('expertNameField');
-      const nameVal = document.getElementById('expertName').value.trim();
-      if (!nameVal) { nameField.classList.add('has-error'); valid = false; }
-      else nameField.classList.remove('has-error');
-    }
-    if (!valid) return;
-
-    // 데이터 수집
-    const regions = [];
-    Object.entries(selected).forEach(([sido, gus]) => {
-      gus.forEach(gu => regions.push(`${sido} ${gu}`));
-    });
-
-    const restricts = [];
-    ['ri1','ri2','ri3','ri4','ri5'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el.classList.contains('on')) {
-        const label = el.querySelector('.restrict-header span').textContent;
-        const detail = el.querySelector('.restrict-body input, .restrict-body textarea');
-        restricts.push(detail ? `${label}: ${detail.value}` : label);
-      }
-    });
-
-    const members = [...document.querySelectorAll('.member-input')].map(i => i.value.trim()).filter(Boolean);
-
-    const payload = {
-      timestamp: new Date().toLocaleString('ko-KR'),
-      type: isTeam ? '팀' : '개인',
-      name: isTeam ? document.getElementById('teamName').value.trim() : document.getElementById('expertName').value.trim(),
-      members: members.join(', '),
-      regions: regions.join(', '),
-      restricts: restricts.join(' / '),
-      memo: document.getElementById('memo').value.trim()
-    };
-
-    // 제출
-    const btn = document.getElementById('submitBtn');
-    btn.classList.add('loading');
-    btn.querySelector('span') && (btn.querySelector('span').textContent = '전송 중...');
-
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      document.getElementById('mainForm').style.display = 'none';
-      document.querySelector('.notice-banner').style.display = 'none';
-      document.querySelector('.form-header').style.display = 'none';
-      document.getElementById('successScreen').style.display = 'block';
-    } catch (err) {
-      alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
-      btn.classList.remove('loading');
-    }
-  });
+});
 </script>
 </body>
 </html>
