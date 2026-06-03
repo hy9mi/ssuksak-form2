@@ -170,8 +170,8 @@
     }
     .model-opt label .model-name { font-size: 13px; font-weight: 500; }
     .model-opt label .model-sub { font-size: 10px; color: var(--text-hint); }
-    .model-opt input:checked + label { border-color: var(--danger); background: var(--danger-light); color: var(--danger); }
-    .model-opt input:checked + label .model-sub { color: #e07070; }
+    .model-opt input:checked + label { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+    .model-opt input:checked + label .model-sub { color: var(--accent-mid); }
 
     @media (max-width: 480px) {
       .region-grid, .two-col { grid-template-columns: 1fr; }
@@ -275,15 +275,15 @@
 
     </div>
 
-    <!-- 서비스 불가 기종 -->
-    <div class="card" style="border-color:#f0a0a0; border-width:1.5px;">
-      <div class="card-title" style="color:var(--danger);">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--danger)"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-        서비스 불가 기종
+    <!-- 서비스 가능 기종 -->
+    <div class="card" style="border-color:#52b788; border-width:1.5px;">
+      <div class="card-title" style="color:var(--accent);">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--accent)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        서비스 가능 기종
       </div>
-      <div style="background:var(--danger-light); border:1px solid #f0a0a0; border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:14px;">
-        <p style="font-size:15px; color:var(--danger); font-weight:500; line-height:1.6;"><strong style="font-weight:700;">진행하지 않는</strong> 기종을 모두 선택해주세요.</p>
-        <p style="font-size:12px; color:#b05050; margin-top:3px;">선택하지 않으면 해당 기종 작업이 배정될 수 있어요.</p>
+      <div style="background:var(--accent-light); border:1px solid #b7dfca; border-radius:var(--radius-sm); padding:10px 14px; margin-bottom:14px;">
+        <p style="font-size:15px; color:var(--accent); font-weight:500; line-height:1.6;"><strong style="font-weight:700;">진행 가능한</strong> 기종을 모두 선택해주세요.</p>
+        <p style="font-size:12px; color:#2d6a4f; margin-top:3px;">선택하지 않은 기종은 배정에서 제외됩니다.</p>
       </div>
       <div class="model-grid">
         <div class="model-opt"><input type="checkbox" id="m1"><label for="m1"><span class="model-name">벽걸이</span></label></div>
@@ -627,7 +627,7 @@ function buildSummaryHTML(p) {
     row('사다리', p.ladder),
     row('복층', p.duplex),
     row('층고', p.ceiling),
-    row('불가 기종', p.noModels || '없음'),
+    row('가능 기종', p.noModels || '없음'),
     row('기타 불가', p.etcRestrict),
     row('메모', p.memo),
   ].join('');
